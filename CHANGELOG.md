@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [1.4.7] - 2018-06-10
+- metric-postgres-statsdb.rb: Adds new metric temp_bytes deadlocks conflicts.
+
 ## [1.4.6] - 2018-05-03
 ### Fixed
 - version number check for build strings such as `10.3 (Ubuntu 10.3-1.pgdg16.04+1)`
