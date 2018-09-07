@@ -77,7 +77,7 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
     timestamp = Time.now.to_i
     pgpass
     con     = PG.connect(host: config[:hostname],
-                         dbname: 'postgres',
+                         dbname: config[:database],
                          user: config[:user],
                          password: config[:password],
                          port: config[:port],
