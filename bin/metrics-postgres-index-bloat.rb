@@ -189,9 +189,9 @@ SELECT sum(round(bs*(index_aligned_est.relpages)/1024/1024)::int) AS total_MB,
 
     if config[:multirow] && !config[:count_tuples]
       res.values.each do |row|
-        output "#{config[:scheme]}.total_MB", row[0]
-        output "#{config[:scheme]}.wasted_MB", row[1]
-        output "#{config[:scheme]}.bloat_pct", row[2]
+        output "#{config[:scheme]}.#{config[:database]}.total_MB", row[0]
+        output "#{config[:scheme]}.#{config[:database]}.wasted_MB", row[1]
+        output "#{config[:scheme]}.#{config[:database]}.bloat_pct", row[2]
       end
     else
       output config[:scheme], value
