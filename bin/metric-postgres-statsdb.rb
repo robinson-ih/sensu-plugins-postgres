@@ -91,7 +91,7 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
     request = [
       'select numbackends, xact_commit, xact_rollback,',
       'blks_read, blks_hit,',
-      'tup_returned, tup_fetched, tup_inserted, tup_updated, tup_deleted, temp_bytes, deadlocks, conflicts',
+      'tup_returned, tup_fetched, tup_inserted, tup_updated, tup_deleted, temp_bytes, deadlocks, conflicts, temp_files',
       "from pg_stat_database where datname='#{config[:database]}'"
     ]
     con.exec(request.join(' ')) do |result|
@@ -108,7 +108,8 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
         output "#{config[:scheme]}.statsdb.#{config[:database]}.tup_deleted", row['tup_deleted'], timestamp
         output "#{config[:scheme]}.statsdb.#{config[:database]}.temp_bytes", row['temp_bytes'], timestamp
         output "#{config[:scheme]}.statsdb.#{config[:database]}.deadlocks", row['deadlocks'], timestamp
-        output "#{config[:scheme]}.statsdb.#{config[:database]}.conflicts", row['conflicts'], timestamp        
+        output "#{config[:scheme]}.statsdb.#{config[:database]}.conflicts", row['conflicts'], timestamp 
+        output "#{config[:scheme]}.statsdb.#{config[:database]}.temp_files", row['temp_files'], timestamp               
       end
     end
 
